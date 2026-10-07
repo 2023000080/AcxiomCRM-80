@@ -1,0 +1,236 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h1>AcxiomCRM Dashboard</h1>
+        <p class="text-muted">
+            Customer and Sales Management Overview
+        </p>
+    </div>
+
+    <!-- ========================= -->
+    <!-- DASHBOARD CARDS -->
+    <!-- ========================= -->
+
+    <div class="row">
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Total Customers</h5>
+                    <h2>@ViewBag.TotalCustomers</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Total Leads</h5>
+                    <h2>@ViewBag.TotalLeads</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Open Leads</h5>
+                    <h2>@ViewBag.OpenLeads</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Total Opportunities</h5>
+                    <h2>@ViewBag.TotalOpportunities</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Open Opportunities</h5>
+                    <h2>@ViewBag.OpenOpportunities</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Won Opportunities</h5>
+                    <h2>@ViewBag.WonOpportunities</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Lost Opportunities</h5>
+                    <h2>@ViewBag.LostOpportunities</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Sales Pipeline</h5>
+                    <h2>₹@ViewBag.TotalPipeline</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- CHARTS -->
+    <!-- ========================= -->
+
+    <div class="row mt-4">
+
+        <!-- Lead Status Chart -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <h4 class="text-center">
+                        Lead Status
+                    </h4>
+
+                    <canvas id="leadStatusChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Opportunity Pipeline Chart -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <h4 class="text-center">
+                        Opportunity Pipeline
+                    </h4>
+
+                    <canvas id="opportunityPipelineChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+    // =========================
+    // LEAD STATUS CHART
+    // =========================
+
+    const leadStatusLabels =
+        @Html.Raw(ViewBag.LeadStatusLabels);
+
+    const leadStatusValues =
+        @Html.Raw(ViewBag.LeadStatusValues);
+
+
+    new Chart(
+        document.getElementById('leadStatusChart'),
+        {
+            type: 'pie',
+
+            data:
+            {
+                labels: leadStatusLabels,
+
+                datasets:
+                [
+                    {
+                        label: 'Leads',
+
+                        data: leadStatusValues
+                    }
+                ]
+            },
+
+            options:
+            {
+                responsive: true
+            }
+        }
+    );
+
+
+    // =========================
+    // OPPORTUNITY PIPELINE
+    // =========================
+
+    const opportunityStageLabels =
+        @Html.Raw(ViewBag.OpportunityStageLabels);
+
+    const opportunityStageValues =
+        @Html.Raw(ViewBag.OpportunityStageValues);
+
+
+    new Chart(
+        document.getElementById('opportunityPipelineChart'),
+        {
+            type: 'bar',
+
+            data:
+            {
+                labels: opportunityStageLabels,
+
+                datasets:
+                [
+                    {
+                        label: 'Opportunity Amount',
+
+                        data: opportunityStageValues
+                    }
+                ]
+            },
+
+            options:
+            {
+                responsive: true,
+
+                scales:
+                {
+                    y:
+                    {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+    );
+
+</script>

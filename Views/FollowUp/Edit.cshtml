@@ -1,0 +1,69 @@
+@model AcxiomCRM.Models.FollowUp
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>FollowUp</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FollowUpId" />
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input asp-for="CustomerId" class="form-control" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeadId" class="control-label"></label>
+                <input asp-for="LeadId" class="form-control" />
+                <span asp-validation-for="LeadId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OpportunityId" class="control-label"></label>
+                <input asp-for="OpportunityId" class="form-control" />
+                <span asp-validation-for="OpportunityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FollowUpDate" class="control-label"></label>
+                <input asp-for="FollowUpDate" class="form-control" />
+                <span asp-validation-for="FollowUpDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FollowUpType" class="control-label"></label>
+                <input asp-for="FollowUpType" class="form-control" />
+                <span asp-validation-for="FollowUpType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remarks" class="control-label"></label>
+                <input asp-for="Remarks" class="form-control" />
+                <span asp-validation-for="Remarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignedTo" class="control-label"></label>
+                <input asp-for="AssignedTo" class="form-control" />
+                <span asp-validation-for="AssignedTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,77 @@
+@model IEnumerable<AcxiomCRM.Models.FollowUp>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeadId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpportunityId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FollowUpDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FollowUpType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedTo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeadId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpportunityId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FollowUpDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FollowUpType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedTo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FollowUpId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FollowUpId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FollowUpId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
